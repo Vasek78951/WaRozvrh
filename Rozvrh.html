@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <style>
+    * {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+#main {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table.timetable {
+  background-color: #94B9EF;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: gray;
+}
+
+table.timetable th.period {
+  background-color: #F0F0F0;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #999;
+  width: 67px;
+  vertical-align: middle;
+}
+
+table.timetable th.period span.time {
+  display: block;
+  font-size: 9px;
+  font-weight: normal;
+  letter-spacing: -1px;
+}
+
+table.timetable th.day {
+  color: #fff;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  vertical-align: middle;
+  height: 80px;
+  width: 67px;
+}
+
+table.timetable td {
+  background-color: #fff;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+table.timetable div.lessonFirst {
+  border: none;
+}
+
+table.timetable div.lesson1 {
+  padding: 0 2px 0 2px;
+}
+
+table.timetable td .room {
+  float: right;
+  margin-right: 3px;
+}
+
+table.timetable td .employee,
+table.timetable td .group,
+table.timetable td .room,
+table.timetable td .class {
+  display: block;
+  font-size: 11px;
+  text-decoration: none;
+  clear: none;
+  max-width: 27px;
+  max-height: 14px;
+  overflow: hidden;
+}
+
+table.timetable td .employee {
+  text-align: left;
+  margin-left: 3px;
+}
+
+table.timetable td .subject {
+  font-size: 25px;
+  text-align: center;
+  display: block;
+  margin: 8px 0 8px 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+table.timetable td .class {
+  float: left;
+  margin-left: 3px;
+}
+
+div.timetable div.table {
+  background-color: #94B9EF;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  display: block;
+}
+
+@media (max-width: 650px) {
+  
+  th {
+    display: none;
+    
+  }
+  tr{
+    
+  }
+  td {
+  
+    display: block;
+    border: #94B9EF solid 0.5rem;
+  }
+  tr::before{
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  tr:nth-of-type(2)::before{
+    content: "Pondělí";
+    
+  }
+  tr:nth-of-type(3)::before{
+    content: "Úterý";
+  }
+  tr:nth-of-type(4)::before{
+    content: "Středa";
+  }
+  tr:nth-of-type(5)::before{
+    content: "Čtvrtek";
+  }
+  tr:nth-of-type(6)::before{
+    content: "Pátek";
+  }
+  .day{
+    display: none;
+  }
+  td::before{
+    content: attr(data-cell);
+  }
+
+  .periods{
+    position: absolute;
+  }
+  table.timetable td .class{
+    display: none;
+    
+  }
+  .empty{
+    display: none;
+  }
+  table.timetable div.lessonFirst{
+    border-bottom: #94B9EF solid 3px;
+  }
+
+}
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <div class="table">
+      <table class="timetable" cellspacing="2" summary="">
+        <tbody>
+          <tr class="periods">
+            <th></th>
+            <th class="period" width="10%">1<span class="time">7:30 - 8:15</span></th>
+            <th class="period" width="10%">2<span class="time">8:25 - 9:10</span></th>
+            <th class="period" width="10%">3<span class="time">9:20 - 10:05</span></th>
+            <th class="period" width="10%">4<span class="time">10:20 - 11:05</span></th>
+            <th class="period" width="10%">5<span class="time">11:15 - 12:00</span></th>
+            <th class="period" width="10%">6<span class="time">12:10 - 12:55</span></th>
+            <th class="period" width="10%">7<span class="time">13:05 - 13:50</span></th>
+            <th class="period" width="10%">8<span class="time">14:00 - 14:45</span></th>
+            <th class="period" width="10%">9<span class="time">14:55 - 15:40</span></th>
+            <th class="period" width="10%">10<span class="time">15:50 - 16:35</span></th>
+          </tr>
+          <tr>
+            <th class="day">Po</th>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/WE" title="David Weber">We</a><span class="subject"
+                  title="Teoretická informatika">TI</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/BC" title="Lucie Brčáková">Bc</a><span class="subject" title="Ekonomika">EK</span><span
+                  class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/TV">TV</a><a class="employee"
+                  href="/ucitel/KU" title="Dušan Kuchařík">Ku</a><span class="subject"
+                  title="Tělesná&nbsp; výchova">TV</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/17b">17b</a><a class="employee"
+                  href="/ucitel/MO" title="Jan Molič">Mo</a><span class="subject" title="Webové aplikace">WA</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 1/2.">1/2</span>
+              </div>
+              <div class="lesson2"><a class="room" href="/ucebna/19c">19c</a><a class="employee" href="/ucitel/KA"
+                  title="Ivana Kantnerová">Ka</a><span class="subject" title="Databázové systémy">DS</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/17b">17b</a><a class="employee"
+                  href="/ucitel/MO" title="Jan Molič">Mo</a><span class="subject" title="Webové aplikace">WA</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 1/2.">1/2</span>
+              </div>
+              <div class="lesson2"><a class="room" href="/ucebna/19c">19c</a><a class="employee" href="/ucitel/KA"
+                  title="Ivana Kantnerová">Ka</a><span class="subject" title="Databázové systémy">DS</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/5b">5b</a><a class="employee"
+                  href="/ucitel/KN" title="Marie Kmoníčková">Kn</a><span class="subject"
+                  title="Anglický jazyk">A</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 2/2.">2/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/28">28</a><a class="employee" href="/ucitel/HS"
+                  title="Simona Hemžalová">Hs</a><span class="subject" title="Anglický jazyk">A</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 1/2.">1/2</span>
+              </div>
+            </td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+          </tr>
+          <tr>
+            <th class="day">Út</th>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/5b">5b</a><a class="employee"
+                  href="/ucitel/KN" title="Marie Kmoníčková">Kn</a><span class="subject"
+                  title="Anglický jazyk">A</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 2/2.">2/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/5a">5a</a><a class="employee" href="/ucitel/HS"
+                  title="Simona Hemžalová">Hs</a><span class="subject" title="Anglický jazyk">A</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 1/2.">1/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/RE" title="Alena Reichlová">Re</a><span class="subject"
+                  title="Programové vybavení">PV</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/HE" title="Jan Hehl">He</a><span class="subject"
+                  title="Český jazyk a literatura">C</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/MS" title="Lukáš Masopust">Ms</a><span class="subject"
+                  title="Webové aplikace">WA</span><span class="class">C3c</span></div>
+            </td>
+            <td class=" empty"></td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/8a">8a</a><a class="employee"
+                  href="/ucitel/MO" title="Jan Molič">Mo</a><span class="subject"
+                  title="Počítačové systémy a sítě">PSS</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/19b">19b</a><a class="employee" href="/ucitel/MS"
+                  title="Lukáš Masopust">Ms</a><span class="subject" title="Webové aplikace">WA</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/8a">8a</a><a class="employee"
+                  href="/ucitel/MO" title="Jan Molič">Mo</a><span class="subject"
+                  title="Počítačové systémy a sítě">PSS</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/19b">19b</a><a class="employee" href="/ucitel/MS"
+                  title="Lukáš Masopust">Ms</a><span class="subject" title="Webové aplikace">WA</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/MO" title="Jan Molič">Mo</a><span class="subject"
+                  title="Počítačové systémy a sítě">PSS</span><span class="class">C3c</span></div>
+            </td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+          </tr>
+          <tr>
+            <th class="day">St</th>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/19b">19b</a><a class="employee"
+                  href="/ucitel/BD" title="Jaroslav Benda">Bd</a><span class="subject"
+                  title="Cvičení ze správy IT">CIT</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/L1">L1</a><a class="employee" href="/ucitel/SV"
+                  title="Jan Šváb">Sv</a><span class="subject" title="Cvičení ze správy IT">CIT</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/19b">19b</a><a class="employee"
+                  href="/ucitel/BD" title="Jaroslav Benda">Bd</a><span class="subject"
+                  title="Cvičení ze správy IT">CIT</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/L1">L1</a><a class="employee" href="/ucitel/SV"
+                  title="Jan Šváb">Sv</a><span class="subject" title="Cvičení ze správy IT">CIT</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/NG" title="Eva Neugebauerová">Ng</a><span class="subject" title="Matematika">M</span><span
+                  class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/5b">5b</a><a class="employee"
+                  href="/ucitel/KN" title="Marie Kmoníčková">Kn</a><span class="subject"
+                  title="Anglický jazyk">A</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 2/2.">2/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/5a">5a</a><a class="employee" href="/ucitel/HS"
+                  title="Simona Hemžalová">Hs</a><span class="subject" title="Anglický jazyk">A</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 1/2.">1/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/BC" title="Lucie Brčáková">Bc</a><span class="subject" title="Ekonomika">EK</span><span
+                  class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/KA" title="Ivana Kantnerová">Ka</a><span class="subject"
+                  title="Databázové systémy">DS</span><span class="class">C3c</span></div>
+            </td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+          </tr>
+          <tr>
+            <th class="day">Čt</th>
+            <td class=" empty"></td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/BC" title="Lucie Brčáková">Bc</a><span class="subject" title="Ekonomika">EK</span><span
+                  class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/HE" title="Jan Hehl">He</a><span class="subject"
+                  title="Český jazyk a literatura">C</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/TV">TV</a><a class="employee"
+                  href="/ucitel/KU" title="Dušan Kuchařík">Ku</a><span class="subject"
+                  title="Tělesná&nbsp; výchova">TV</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/NG" title="Eva Neugebauerová">Ng</a><span class="subject" title="Matematika">M</span><span
+                  class="class">C3c</span></div>
+            </td>
+            <td class=" empty"></td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/5a">5a</a><a class="employee"
+                  href="/ucitel/KN" title="Marie Kmoníčková">Kn</a><span class="subject"
+                  title="Anglický jazyk">A</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 2/2.">2/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/28">28</a><a class="employee" href="/ucitel/HS"
+                  title="Simona Hemžalová">Hs</a><span class="subject" title="Anglický jazyk">A</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 1/2.">1/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/19a">19a</a><a class="employee"
+                  href="/ucitel/VM" title="Martin Váňa">Vm</a><span class="subject"
+                  title="Multimédia a vývoj her">MVH</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/19b">19b</a><a class="employee" href="/ucitel/PP"
+                  title="Adam Papula">Pp</a><span class="subject" title="Multimédia a vývoj her">MVH</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/19a">19a</a><a class="employee"
+                  href="/ucitel/VM" title="Martin Váňa">Vm</a><span class="subject"
+                  title="Multimédia a vývoj her">MVH</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/19b">19b</a><a class="employee" href="/ucitel/PP"
+                  title="Adam Papula">Pp</a><span class="subject" title="Multimédia a vývoj her">MVH</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class=" empty"></td>
+          </tr>
+          <tr>
+            <th class="day">Pa</th>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/18a">18a</a><a class="employee"
+                  href="/ucitel/RE" title="Alena Reichlová">Re</a><span class="subject"
+                  title="Programové vybavení">PV</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/18b">18b</a><a class="employee" href="/ucitel/WE"
+                  title="David Weber">We</a><span class="subject" title="Programové vybavení">PV</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/18a">18a</a><a class="employee"
+                  href="/ucitel/RE" title="Alena Reichlová">Re</a><span class="subject"
+                  title="Programové vybavení">PV</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/18b">18b</a><a class="employee" href="/ucitel/WE"
+                  title="David Weber">We</a><span class="subject" title="Programové vybavení">PV</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/NG" title="Eva Neugebauerová">Ng</a><span class="subject" title="Matematika">M</span><span
+                  class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/19c">19c</a><a class="employee"
+                  href="/ucitel/KA" title="Ivana Kantnerová">Ka</a><span class="subject"
+                  title="Databázové systémy">DS</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/8a">8a</a><a class="employee" href="/ucitel/MS"
+                  title="Lukáš Masopust">Ms</a><span class="subject" title="Počítačové systémy a sítě">PSS</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson2 lessonFirst"><a class="room" href="/ucebna/19c">19c</a><a class="employee"
+                  href="/ucitel/KA" title="Ivana Kantnerová">Ka</a><span class="subject"
+                  title="Databázové systémy">DS</span><span class="class">C3c</span><span class="group"
+                  title="Pouze pro část třídy označenou jako 1/2.">1/2</span></div>
+              <div class="lesson2"><a class="room" href="/ucebna/8a">8a</a><a class="employee" href="/ucitel/MS"
+                  title="Lukáš Masopust">Ms</a><span class="subject" title="Počítačové systémy a sítě">PSS</span><span
+                  class="class">C3c</span><span class="group" title="Pouze pro část třídy označenou jako 2/2.">2/2</span>
+              </div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/HE" title="Jan Hehl">He</a><span class="subject"
+                  title="Český jazyk a literatura">C</span><span class="class">C3c</span></div>
+            </td>
+            <td class="">
+              <div class="lesson1 lessonFirst"><a class="room" href="/ucebna/28">28</a><a class="employee"
+                  href="/ucitel/WE" title="David Weber">We</a><span class="subject"
+                  title="Teoretická informatika">TI</span><span class="class">C3c</span></div>
+            </td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+            <td class=" empty"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
